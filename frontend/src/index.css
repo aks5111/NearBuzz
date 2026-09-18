@@ -810,6 +810,11 @@ body {
   gap: 20px;
 }
 
+.role-select-field {
+  max-width: 260px;
+  margin-bottom: 20px;
+}
+
 .role-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);

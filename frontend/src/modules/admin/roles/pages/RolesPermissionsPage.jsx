@@ -93,6 +93,7 @@ export default function RolesPermissionsPage() {
   const { role: currentUserRole } = useAuth();
   const [roles, setRoles] = useState([]);
   const [permissions, setPermissions] = useState([]);
+  const [selectedRoleId, setSelectedRoleId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -101,8 +102,10 @@ export default function RolesPermissionsPage() {
     Promise.all([fetchRoles(), fetchPermissions()])
       .then(([rolesRes, permissionsRes]) => {
         if (cancelled) return;
-        setRoles(rolesRes.data?.data ?? []);
+        const roleList = rolesRes.data?.data ?? [];
+        setRoles(roleList);
         setPermissions(permissionsRes.data?.data ?? []);
+        setSelectedRoleId(roleList[0]?.id ?? null);
       })
       .catch((err) => {
         if (!cancelled) setError(err.response?.data?.message || 'Failed to load roles');
@@ -117,6 +120,7 @@ export default function RolesPermissionsPage() {
 
   const permissionsByModule = useMemo(() => groupByModule(permissions), [permissions]);
   const canEdit = currentUserRole === ROLES.SUPER_ADMIN;
+  const selectedRole = roles.find((r) => r.id === selectedRoleId);
 
   async function handleSave(roleId, permissionIds) {
     await updateRolePermissions(roleId, permissionIds);
@@ -127,23 +131,41 @@ export default function RolesPermissionsPage() {
       <h1>Roles &amp; Permissions</h1>
       <p className="page-subtitle">
         {canEdit
-          ? 'Control what each role can do across the admin panel.'
+          ? 'Pick a role to see and edit what it can do across the admin panel.'
           : "Only a super admin can change these. You're viewing them read-only."}
       </p>
+
       {loading && <p>Loading…</p>}
       {error && <p className="form-error">{error}</p>}
-      {!loading && !error && (
-        <div className="role-card-list">
-          {roles.map((role) => (
+
+      {!loading && !error && roles.length > 0 && (
+        <>
+          <div className="form-field role-select-field">
+            <label htmlFor="roleSelect">Role</label>
+            <select
+              id="roleSelect"
+              className="input"
+              value={selectedRoleId ?? ''}
+              onChange={(e) => setSelectedRoleId(Number(e.target.value))}
+            >
+              {roles.map((role) => (
+                <option key={role.id} value={role.id}>
+                  {role.name.replace('ROLE_', '')}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {selectedRole && (
             <RoleCard
-              key={role.id}
-              role={role}
+              key={selectedRole.id}
+              role={selectedRole}
               permissionsByModule={permissionsByModule}
               canEdit={canEdit}
               onSave={handleSave}
             />
-          ))}
-        </div>
+          )}
+        </>
       )}
     </div>
   );
