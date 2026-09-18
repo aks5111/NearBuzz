@@ -16,6 +16,7 @@ export default function Navbar() {
       </Link>
       <nav className="navbar-actions">
         <Link to="/shopping">Shop</Link>
+        <Link to="/map">Map</Link>
         {isAuthenticated ? (
           <>
             <Link to={isAdmin ? '/admin/dashboard' : '/dashboard'}>

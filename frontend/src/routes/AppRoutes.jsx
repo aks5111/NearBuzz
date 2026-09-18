@@ -5,6 +5,7 @@ import AdminLayout from '../layouts/AdminLayout';
 import LoginPage from '../modules/auth/pages/LoginPage';
 import HomePage from '../modules/home/pages/HomePage';
 import ShoppingPage from '../modules/shopping/pages/ShoppingPage';
+import MapPage from '../modules/map/pages/MapPage';
 import DashboardPage from '../modules/dashboard/pages/DashboardPage';
 import AdminLoginPage from '../modules/admin/login/pages/AdminLoginPage';
 import AdminDashboardPage from '../modules/admin/dashboard/pages/AdminDashboardPage';
@@ -29,6 +30,7 @@ export default function AppRoutes() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/shopping" element={<ShoppingPage />} />
+        <Route path="/map" element={<MapPage />} />
       </Route>
 
       <Route element={<AuthLayout />}>
