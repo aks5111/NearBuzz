@@ -1,0 +1,5 @@
+-- Baseline migration. No tables yet — every future schema change
+-- (new table, new column, index, etc.) goes in a new V{n}__description.sql
+-- file here. Never edit an already-applied migration; add a new one.
+-- Run against dev first, then the exact same file runs against prod
+-- later, so schema stays identical without touching prod data.
