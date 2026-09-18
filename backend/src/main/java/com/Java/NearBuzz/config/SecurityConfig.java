@@ -62,6 +62,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/chat").permitAll()
                         .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/v1/map/**").permitAll()
                         .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/v1/geo/**").permitAll()
+                        .requestMatchers(org.springframework.http.HttpMethod.GET,
+                                "/api/v1/travel/**", "/api/v1/fitness/**", "/api/v1/calisthenics/**",
+                                "/api/v1/party-place/**", "/api/v1/friends-nearby/**",
+                                "/api/v1/sports-activity/**", "/api/v1/event-booking/**").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
