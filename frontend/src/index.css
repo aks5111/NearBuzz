@@ -374,18 +374,6 @@ body {
   color: #fff;
 }
 
-.chip-link {
-  text-decoration: none;
-  margin-left: auto;
-  border-style: dashed;
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-}
-
-.chip-link:hover {
-  background: var(--color-primary);
-  color: #fff;
-}
 
 /* Activity grid + card */
 

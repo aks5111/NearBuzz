@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Compass, ShoppingBag } from 'lucide-react';
+import { Compass } from 'lucide-react';
 import SearchBar from '../../../components/ui/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
 import ActivityCard from '../components/ActivityCard';
@@ -8,17 +7,20 @@ import ProductCard from '../../shopping/components/ProductCard';
 import { useActivities } from '../hooks/useActivities';
 import { fetchShoppingProducts } from '../../../api/shopping.api';
 
-const SHOPPING_PREVIEW_COUNT = 4;
-
 export default function HomePage() {
   const { activities, query, setQuery, activeCategory, setActiveCategory } = useActivities();
-  const [shoppingPreview, setShoppingPreview] = useState([]);
+  const [shoppingProducts, setShoppingProducts] = useState([]);
+  const [shoppingLoading, setShoppingLoading] = useState(false);
+  const isShoppingTab = activeCategory === 'shopping';
 
   useEffect(() => {
-    fetchShoppingProducts()
-      .then(({ data }) => setShoppingPreview((data?.data ?? []).slice(0, SHOPPING_PREVIEW_COUNT)))
-      .catch(() => setShoppingPreview([]));
-  }, []);
+    if (!isShoppingTab) return;
+    setShoppingLoading(true);
+    fetchShoppingProducts({ search: query || undefined })
+      .then(({ data }) => setShoppingProducts(data?.data ?? []))
+      .catch(() => setShoppingProducts([]))
+      .finally(() => setShoppingLoading(false));
+  }, [isShoppingTab, query]);
 
   return (
     <div className="home-page">
@@ -29,13 +31,13 @@ export default function HomePage() {
           </span>
           <h1>Find something worth doing today</h1>
           <p>
-            Treks, workouts, parties, sports, meetups and events — all in one place. Browse everything,
-            or search for exactly what you're in the mood for.
+            Treks, workouts, parties, sports, meetups, events and shopping — all in one place. Browse
+            everything, or search for exactly what you're in the mood for.
           </p>
           <SearchBar
             value={query}
             onChange={setQuery}
-            placeholder="Search activities, places, or events near you…"
+            placeholder="Search activities, places, events or products…"
           />
         </div>
       </section>
@@ -43,7 +45,21 @@ export default function HomePage() {
       <section className="home-body">
         <CategoryFilter active={activeCategory} onChange={setActiveCategory} />
 
-        {activities.length > 0 ? (
+        {isShoppingTab ? (
+          shoppingLoading ? (
+            <p className="page-subtitle">Loading products…</p>
+          ) : shoppingProducts.length > 0 ? (
+            <div className="activity-grid">
+              {shoppingProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="empty-state">
+              <p>No products match "{query}" yet.</p>
+            </div>
+          )
+        ) : activities.length > 0 ? (
           <div className="activity-grid">
             {activities.map((activity) => (
               <ActivityCard key={activity.id} activity={activity} />
@@ -52,25 +68,6 @@ export default function HomePage() {
         ) : (
           <div className="empty-state">
             <p>Nothing matches "{query}" yet. Try a different search or category.</p>
-          </div>
-        )}
-
-        {shoppingPreview.length > 0 && (
-          <div className="section-header-row">
-            <h2>
-              <ShoppingBag size={18} aria-hidden="true" /> Shop nearby
-            </h2>
-            <Link to="/shopping" className="section-see-all">
-              See all <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-        )}
-
-        {shoppingPreview.length > 0 && (
-          <div className="activity-grid">
-            {shoppingPreview.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
           </div>
         )}
       </section>

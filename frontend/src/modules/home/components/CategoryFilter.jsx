@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
-import { ShoppingBag } from 'lucide-react';
 import { CATEGORIES } from '../mock/activities';
 
+const SHOPPING_CHIP = { id: 'shopping', label: 'Shopping' };
+
 export default function CategoryFilter({ active, onChange }) {
-  const chips = [{ id: 'all', label: 'All' }, ...CATEGORIES];
+  const chips = [{ id: 'all', label: 'All' }, ...CATEGORIES, SHOPPING_CHIP];
   return (
     <div className="category-filter" role="tablist" aria-label="Filter by category">
       {chips.map((chip) => (
@@ -18,9 +18,6 @@ export default function CategoryFilter({ active, onChange }) {
           {chip.label}
         </button>
       ))}
-      <Link to="/shopping" className="chip chip-link">
-        <ShoppingBag size={14} aria-hidden="true" /> Shopping
-      </Link>
     </div>
   );
 }
