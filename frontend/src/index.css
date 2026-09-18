@@ -303,6 +303,39 @@ body {
   margin-top: -48px;
 }
 
+.section-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px 0 20px;
+}
+
+.section-header-row h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 19px;
+  margin: 0;
+}
+
+.section-header-row h2 svg {
+  color: var(--color-primary);
+}
+
+.section-see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.section-see-all:hover {
+  text-decoration: underline;
+}
+
 .category-filter {
   display: flex;
   flex-wrap: wrap;
