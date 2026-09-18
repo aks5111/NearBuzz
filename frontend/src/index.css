@@ -435,3 +435,241 @@ body {
   padding: 48px 16px;
   color: var(--color-text-muted);
 }
+
+/* Admin layout */
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 12px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 8px 12px 20px;
+  color: var(--color-text);
+}
+
+.sidebar-brand svg {
+  color: var(--color-primary);
+}
+
+.sidebar-brand-tag {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 2px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sidebar-link:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.sidebar-link-active {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.admin-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.admin-topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  display: flex;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.icon-btn:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.admin-content {
+  padding: 28px;
+  max-width: 1100px;
+}
+
+.page-subtitle {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin: -4px 0 24px;
+}
+
+/* Stat cards */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.stat-card svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.stat-label {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* Data table */
+
+.data-table-wrapper {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 12px 16px;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.data-table td {
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.status-dot {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-active {
+  color: #16a34a;
+}
+
+.status-blocked {
+  color: var(--color-error);
+}
+
+/* Coming soon */
+
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--color-text-muted);
+  max-width: 480px;
+}
+
+.coming-soon svg {
+  color: var(--color-primary);
+}
+
+.coming-soon h1 {
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* Admin login */
+
+.admin-login-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}

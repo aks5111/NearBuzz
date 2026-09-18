@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/ui/Button';
 import Input from '../../../components/ui/Input';
 import { useAuth } from '../hooks/useAuth';
 
-export default function LoginForm() {
+export default function LoginForm({ onSuccess }) {
   const { login, loading, error } = useAuth();
-  const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
   const [fieldErrors, setFieldErrors] = useState({});
 
@@ -27,8 +25,8 @@ export default function LoginForm() {
     e.preventDefault();
     if (!validate()) return;
     try {
-      await login(form);
-      navigate('/dashboard');
+      const user = await login(form);
+      onSuccess?.(user);
     } catch {
       // error is surfaced via useAuth().error
     }

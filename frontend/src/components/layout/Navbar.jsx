@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import { useAuth } from '../../modules/auth/hooks/useAuth';
+import { ADMIN_ROLES } from '../../constants';
 import Button from '../ui/Button';
 
 export default function Navbar() {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, role, logout } = useAuth();
+  const isAdmin = ADMIN_ROLES.includes(role);
 
   return (
     <header className="navbar">
@@ -15,7 +17,9 @@ export default function Navbar() {
       <nav className="navbar-actions">
         {isAuthenticated ? (
           <>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to={isAdmin ? '/admin/dashboard' : '/dashboard'}>
+              {isAdmin ? 'Admin Panel' : 'Dashboard'}
+            </Link>
             <Button variant="secondary" onClick={logout}>
               Log out
             </Button>
