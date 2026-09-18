@@ -8,6 +8,7 @@ import DashboardPage from '../modules/dashboard/pages/DashboardPage';
 import AdminLoginPage from '../modules/admin/login/pages/AdminLoginPage';
 import AdminDashboardPage from '../modules/admin/dashboard/pages/AdminDashboardPage';
 import UserManagementPage from '../modules/admin/userManagement/pages/UserManagementPage';
+import RolesPermissionsPage from '../modules/admin/roles/pages/RolesPermissionsPage';
 import TravelManagementPage from '../modules/admin/travelManagement/pages/TravelManagementPage';
 import FitnessManagementPage from '../modules/admin/fitnessManagement/pages/FitnessManagementPage';
 import CalisthenicsManagementPage from '../modules/admin/calisthenicsManagement/pages/CalisthenicsManagementPage';
@@ -42,6 +43,7 @@ export default function AppRoutes() {
         <Route element={<AdminLayout />}>
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
           <Route path="/admin/users" element={<UserManagementPage />} />
+          <Route path="/admin/roles" element={<RolesPermissionsPage />} />
           <Route path="/admin/travel" element={<TravelManagementPage />} />
           <Route path="/admin/fitness" element={<FitnessManagementPage />} />
           <Route path="/admin/calisthenics" element={<CalisthenicsManagementPage />} />
