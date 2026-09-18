@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { ShoppingBag } from 'lucide-react';
 import { CATEGORIES } from '../mock/activities';
 
 export default function CategoryFilter({ active, onChange }) {
@@ -16,6 +18,9 @@ export default function CategoryFilter({ active, onChange }) {
           {chip.label}
         </button>
       ))}
+      <Link to="/shopping" className="chip chip-link">
+        <ShoppingBag size={14} aria-hidden="true" /> Shopping
+      </Link>
     </div>
   );
 }
