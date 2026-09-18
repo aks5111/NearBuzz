@@ -4,6 +4,7 @@ import MainLayout from '../layouts/MainLayout';
 import AdminLayout from '../layouts/AdminLayout';
 import LoginPage from '../modules/auth/pages/LoginPage';
 import HomePage from '../modules/home/pages/HomePage';
+import ShoppingPage from '../modules/shopping/pages/ShoppingPage';
 import DashboardPage from '../modules/dashboard/pages/DashboardPage';
 import AdminLoginPage from '../modules/admin/login/pages/AdminLoginPage';
 import AdminDashboardPage from '../modules/admin/dashboard/pages/AdminDashboardPage';
@@ -16,6 +17,7 @@ import PartyPlaceManagementPage from '../modules/admin/partyPlaceManagement/page
 import FriendsNearbyManagementPage from '../modules/admin/friendsNearbyManagement/pages/FriendsNearbyManagementPage';
 import SportsActivityManagementPage from '../modules/admin/sportsActivityManagement/pages/SportsActivityManagementPage';
 import EventBookingManagementPage from '../modules/admin/eventBookingManagement/pages/EventBookingManagementPage';
+import ShoppingManagementPage from '../modules/admin/shoppingManagement/pages/ShoppingManagementPage';
 import BookingsPage from '../modules/admin/bookings/pages/BookingsPage';
 import SettingsPage from '../modules/admin/settings/pages/SettingsPage';
 import PrivateRoute from './PrivateRoute';
@@ -26,6 +28,7 @@ export default function AppRoutes() {
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/shopping" element={<ShoppingPage />} />
       </Route>
 
       <Route element={<AuthLayout />}>
@@ -51,6 +54,7 @@ export default function AppRoutes() {
           <Route path="/admin/friends-nearby" element={<FriendsNearbyManagementPage />} />
           <Route path="/admin/sports-activity" element={<SportsActivityManagementPage />} />
           <Route path="/admin/event-booking" element={<EventBookingManagementPage />} />
+          <Route path="/admin/shopping" element={<ShoppingManagementPage />} />
           <Route path="/admin/bookings" element={<BookingsPage />} />
           <Route path="/admin/settings" element={<SettingsPage />} />
         </Route>

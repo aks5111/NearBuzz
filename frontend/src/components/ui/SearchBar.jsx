@@ -1,15 +1,15 @@
 import { Search, X } from 'lucide-react';
 
-export default function SearchBar({ value, onChange }) {
+export default function SearchBar({ value, onChange, placeholder = 'Search…' }) {
   return (
     <div className="search-bar">
       <Search size={18} className="search-icon" aria-hidden="true" />
       <input
         type="text"
-        placeholder="Search activities, places, or events near you…"
+        placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        aria-label="Search activities"
+        aria-label={placeholder}
       />
       {value && (
         <button type="button" className="search-clear" onClick={() => onChange('')} aria-label="Clear search">

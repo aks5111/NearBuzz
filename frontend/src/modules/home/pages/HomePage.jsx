@@ -1,5 +1,5 @@
 import { Compass } from 'lucide-react';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../../../components/ui/SearchBar';
 import CategoryFilter from '../components/CategoryFilter';
 import ActivityCard from '../components/ActivityCard';
 import { useActivities } from '../hooks/useActivities';
@@ -19,7 +19,11 @@ export default function HomePage() {
             Treks, workouts, parties, sports, meetups and events — all in one place. Browse everything,
             or search for exactly what you're in the mood for.
           </p>
-          <SearchBar value={query} onChange={setQuery} />
+          <SearchBar
+            value={query}
+            onChange={setQuery}
+            placeholder="Search activities, places, or events near you…"
+          />
         </div>
       </section>
 

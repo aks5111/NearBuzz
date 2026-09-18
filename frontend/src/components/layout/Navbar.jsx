@@ -15,6 +15,7 @@ export default function Navbar() {
         NearBuzz
       </Link>
       <nav className="navbar-actions">
+        <Link to="/shopping">Shop</Link>
         {isAuthenticated ? (
           <>
             <Link to={isAdmin ? '/admin/dashboard' : '/dashboard'}>

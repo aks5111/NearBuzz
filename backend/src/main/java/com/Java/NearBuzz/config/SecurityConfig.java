@@ -58,6 +58,8 @@ public class SecurityConfig {
                         .requestMatchers("/actuator/health").permitAll()
                         .requestMatchers("/actuator/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPER_ADMIN")
                         .requestMatchers("/api/v1/admin/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPER_ADMIN")
+                        .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/v1/shopping/**").permitAll()
+                        .requestMatchers("/api/v1/chat").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

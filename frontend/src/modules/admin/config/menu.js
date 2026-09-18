@@ -9,6 +9,7 @@ import {
   HeartHandshake,
   Trophy,
   Ticket,
+  ShoppingBag,
   ClipboardList,
   Settings,
 } from 'lucide-react';
@@ -28,6 +29,7 @@ export const ADMIN_MENU = [
       { label: 'Meet Friends Nearby', path: '/admin/friends-nearby', icon: HeartHandshake },
       { label: 'Sports Activity', path: '/admin/sports-activity', icon: Trophy },
       { label: 'Event Booking', path: '/admin/event-booking', icon: Ticket },
+      { label: 'Shopping', path: '/admin/shopping', icon: ShoppingBag },
     ],
   },
   {
