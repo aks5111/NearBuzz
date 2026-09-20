@@ -83,7 +83,7 @@ public class ShoppingServiceImpl implements ShoppingService {
         product.setTitle(request.title());
         product.setDescription(request.description());
         product.setPriceLabel(request.priceLabel());
-        product.setImageUrl(request.imageUrl());
+        product.setImages(request.imageUrls());
         product.setStockQuantity(request.stockQuantity());
         if (request.status() != null) {
             try {

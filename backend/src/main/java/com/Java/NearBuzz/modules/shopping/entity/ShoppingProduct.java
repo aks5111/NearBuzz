@@ -1,6 +1,8 @@
 package com.Java.NearBuzz.modules.shopping.entity;
 
+import com.Java.NearBuzz.common.converter.StringListJsonConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "shopping_products")
@@ -45,6 +48,15 @@ public class ShoppingProduct {
 
     @Column(name = "image_url", length = 500)
     private String imageUrl;
+
+    @Convert(converter = StringListJsonConverter.class)
+    @Column(name = "image_urls", nullable = false, columnDefinition = "TEXT")
+    private List<String> imageUrls = List.of();
+
+    public void setImages(List<String> urls) {
+        this.imageUrls = urls == null ? List.of() : urls;
+        this.imageUrl = this.imageUrls.isEmpty() ? null : this.imageUrls.get(0);
+    }
 
     @Column(name = "stock_quantity", nullable = false)
     private Integer stockQuantity = 0;

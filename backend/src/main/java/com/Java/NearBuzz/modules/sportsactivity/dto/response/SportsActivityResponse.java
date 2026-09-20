@@ -2,6 +2,8 @@ package com.Java.NearBuzz.modules.sportsactivity.dto.response;
 
 import com.Java.NearBuzz.modules.sportsactivity.entity.SportsActivity;
 
+import java.util.List;
+
 public record SportsActivityResponse(
         Long id,
         String title,
@@ -11,6 +13,7 @@ public record SportsActivityResponse(
         String priceLabel,
         String tag,
         String imageUrl,
+        List<String> imageUrls,
         Double latitude,
         Double longitude,
         String sportType,
@@ -27,6 +30,7 @@ public record SportsActivityResponse(
                 entity.getPriceLabel(),
                 entity.getTag(),
                 entity.getImageUrl(),
+                entity.getImageUrls(),
                 entity.getLatitude(),
                 entity.getLongitude(),
                 entity.getSportType(),

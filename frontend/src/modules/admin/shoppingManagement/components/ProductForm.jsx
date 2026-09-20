@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from '../../../../components/ui/Button';
 import Input from '../../../../components/ui/Input';
-import ImageUploader from '../../../../components/ui/ImageUploader';
+import MultiImageUploader from '../../../../components/ui/MultiImageUploader';
 
 const STATUSES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'];
 
@@ -11,7 +11,7 @@ export default function ProductForm({ initial, categories, onSubmit, onCancel, s
     title: initial?.title ?? '',
     description: initial?.description ?? '',
     priceLabel: initial?.priceLabel ?? '',
-    imageUrl: initial?.imageUrl ?? '',
+    imageUrls: initial?.imageUrls ?? [],
     stockQuantity: initial?.stockQuantity ?? 0,
     status: initial?.status ?? 'PUBLISHED',
   });
@@ -35,7 +35,7 @@ export default function ProductForm({ initial, categories, onSubmit, onCancel, s
         title: form.title,
         description: form.description,
         priceLabel: form.priceLabel,
-        imageUrl: form.imageUrl,
+        imageUrls: form.imageUrls,
         stockQuantity: Number(form.stockQuantity),
         status: form.status,
       });
@@ -96,8 +96,12 @@ export default function ProductForm({ initial, categories, onSubmit, onCancel, s
       </div>
 
       <div className="form-field">
-        <label>Image</label>
-        <ImageUploader value={form.imageUrl} onChange={(url) => setForm((prev) => ({ ...prev, imageUrl: url }))} folder="shopping" />
+        <label>Images</label>
+        <MultiImageUploader
+          value={form.imageUrls}
+          onChange={(urls) => setForm((prev) => ({ ...prev, imageUrls: urls }))}
+          folder="shopping"
+        />
       </div>
 
       {error && <p className="form-error">{error}</p>}

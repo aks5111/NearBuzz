@@ -2,6 +2,8 @@ package com.Java.NearBuzz.modules.travel.dto.response;
 
 import com.Java.NearBuzz.modules.travel.entity.Travel;
 
+import java.util.List;
+
 public record TravelResponse(
         Long id,
         String title,
@@ -11,6 +13,7 @@ public record TravelResponse(
         String priceLabel,
         String tag,
         String imageUrl,
+        List<String> imageUrls,
         Double latitude,
         Double longitude,
         Integer durationDays,
@@ -27,6 +30,7 @@ public record TravelResponse(
                 entity.getPriceLabel(),
                 entity.getTag(),
                 entity.getImageUrl(),
+                entity.getImageUrls(),
                 entity.getLatitude(),
                 entity.getLongitude(),
                 entity.getDurationDays(),

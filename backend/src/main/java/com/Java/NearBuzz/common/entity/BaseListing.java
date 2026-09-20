@@ -1,6 +1,8 @@
 package com.Java.NearBuzz.common.entity;
 
+import com.Java.NearBuzz.common.converter.StringListJsonConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Shared shape for every "happening somewhere" module (travel, fitness,
@@ -49,6 +52,17 @@ public abstract class BaseListing {
 
     @Column(name = "image_url", length = 500)
     private String imageUrl;
+
+    @Convert(converter = StringListJsonConverter.class)
+    @Column(name = "image_urls", nullable = false, columnDefinition = "TEXT")
+    private List<String> imageUrls = List.of();
+
+    /** Replaces the image list and keeps imageUrl (the cover shown wherever
+     * only one photo fits — map pins, product grids) as its first entry. */
+    public void setImages(List<String> urls) {
+        this.imageUrls = urls == null ? List.of() : urls;
+        this.imageUrl = this.imageUrls.isEmpty() ? null : this.imageUrls.get(0);
+    }
 
     private Double latitude;
     private Double longitude;

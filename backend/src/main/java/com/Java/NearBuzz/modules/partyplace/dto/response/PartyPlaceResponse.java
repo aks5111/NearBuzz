@@ -2,6 +2,8 @@ package com.Java.NearBuzz.modules.partyplace.dto.response;
 
 import com.Java.NearBuzz.modules.partyplace.entity.PartyPlace;
 
+import java.util.List;
+
 public record PartyPlaceResponse(
         Long id,
         String title,
@@ -11,6 +13,7 @@ public record PartyPlaceResponse(
         String priceLabel,
         String tag,
         String imageUrl,
+        List<String> imageUrls,
         Double latitude,
         Double longitude,
         Integer capacity,
@@ -26,6 +29,7 @@ public record PartyPlaceResponse(
                 entity.getPriceLabel(),
                 entity.getTag(),
                 entity.getImageUrl(),
+                entity.getImageUrls(),
                 entity.getLatitude(),
                 entity.getLongitude(),
                 entity.getCapacity(),

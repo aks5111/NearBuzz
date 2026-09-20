@@ -2,6 +2,8 @@ package com.Java.NearBuzz.modules.calisthenics.dto.response;
 
 import com.Java.NearBuzz.modules.calisthenics.entity.Calisthenics;
 
+import java.util.List;
+
 public record CalisthenicsResponse(
         Long id,
         String title,
@@ -11,6 +13,7 @@ public record CalisthenicsResponse(
         String priceLabel,
         String tag,
         String imageUrl,
+        List<String> imageUrls,
         Double latitude,
         Double longitude,
         String difficultyLevel,
@@ -26,6 +29,7 @@ public record CalisthenicsResponse(
                 entity.getPriceLabel(),
                 entity.getTag(),
                 entity.getImageUrl(),
+                entity.getImageUrls(),
                 entity.getLatitude(),
                 entity.getLongitude(),
                 entity.getDifficultyLevel(),

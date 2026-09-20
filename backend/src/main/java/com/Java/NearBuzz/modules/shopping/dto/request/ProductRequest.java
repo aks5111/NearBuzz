@@ -4,12 +4,14 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 public record ProductRequest(
         @NotNull Long categoryId,
         @NotBlank String title,
         String description,
         @NotBlank String priceLabel,
-        String imageUrl,
+        List<String> imageUrls,
         @NotNull @Min(0) Integer stockQuantity,
         String status) {
 }

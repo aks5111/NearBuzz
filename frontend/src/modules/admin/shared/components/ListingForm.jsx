@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from '../../../../components/ui/Button';
 import Input from '../../../../components/ui/Input';
-import ImageUploader from '../../../../components/ui/ImageUploader';
+import MultiImageUploader from '../../../../components/ui/MultiImageUploader';
 
 const STATUSES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'];
 
@@ -13,7 +13,7 @@ function buildInitialForm(initial, extraFields) {
     scheduleText: initial?.scheduleText ?? '',
     priceLabel: initial?.priceLabel ?? '',
     tag: initial?.tag ?? '',
-    imageUrl: initial?.imageUrl ?? '',
+    imageUrls: initial?.imageUrls ?? [],
     latitude: initial?.latitude ?? '',
     longitude: initial?.longitude ?? '',
     status: initial?.status ?? 'PUBLISHED',
@@ -48,7 +48,7 @@ export default function ListingForm({ initial, extraFields = [], imageFolder, on
       scheduleText: form.scheduleText,
       priceLabel: form.priceLabel,
       tag: form.tag,
-      imageUrl: form.imageUrl,
+      imageUrls: form.imageUrls,
       latitude: form.latitude === '' ? null : Number(form.latitude),
       longitude: form.longitude === '' ? null : Number(form.longitude),
       status: form.status,
@@ -131,10 +131,10 @@ export default function ListingForm({ initial, extraFields = [], imageFolder, on
       )}
 
       <div className="form-field">
-        <label>Image</label>
-        <ImageUploader
-          value={form.imageUrl}
-          onChange={(url) => setForm((prev) => ({ ...prev, imageUrl: url }))}
+        <label>Images</label>
+        <MultiImageUploader
+          value={form.imageUrls}
+          onChange={(urls) => setForm((prev) => ({ ...prev, imageUrls: urls }))}
           folder={imageFolder}
         />
       </div>

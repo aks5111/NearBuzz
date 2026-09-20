@@ -68,7 +68,7 @@ public class CalisthenicsServiceImpl implements CalisthenicsService {
         entity.setScheduleText(request.scheduleText());
         entity.setPriceLabel(request.priceLabel());
         entity.setTag(request.tag());
-        entity.setImageUrl(request.imageUrl());
+        entity.setImages(request.imageUrls());
         entity.setLatitude(request.latitude());
         entity.setLongitude(request.longitude());
         entity.setDifficultyLevel(request.difficultyLevel());

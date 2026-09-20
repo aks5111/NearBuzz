@@ -2,6 +2,8 @@ package com.Java.NearBuzz.modules.calisthenics.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 public record CalisthenicsRequest(
         @NotBlank String title,
         String description,
@@ -9,7 +11,7 @@ public record CalisthenicsRequest(
         String scheduleText,
         String priceLabel,
         String tag,
-        String imageUrl,
+        List<String> imageUrls,
         Double latitude,
         Double longitude,
         String difficultyLevel,

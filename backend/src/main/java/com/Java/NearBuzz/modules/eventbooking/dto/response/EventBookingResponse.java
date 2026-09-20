@@ -2,6 +2,8 @@ package com.Java.NearBuzz.modules.eventbooking.dto.response;
 
 import com.Java.NearBuzz.modules.eventbooking.entity.EventBooking;
 
+import java.util.List;
+
 public record EventBookingResponse(
         Long id,
         String title,
@@ -11,6 +13,7 @@ public record EventBookingResponse(
         String priceLabel,
         String tag,
         String imageUrl,
+        List<String> imageUrls,
         Double latitude,
         Double longitude,
         String organizerName,
@@ -28,6 +31,7 @@ public record EventBookingResponse(
                 entity.getPriceLabel(),
                 entity.getTag(),
                 entity.getImageUrl(),
+                entity.getImageUrls(),
                 entity.getLatitude(),
                 entity.getLongitude(),
                 entity.getOrganizerName(),
