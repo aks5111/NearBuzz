@@ -1,5 +1,9 @@
 import axiosClient from './axiosClient';
 
+export function fetchTravel(search) {
+  return axiosClient.get('/travel', { params: { search: search || undefined } });
+}
+
 export function fetchAdminTravel() {
   return axiosClient.get('/admin/travel');
 }

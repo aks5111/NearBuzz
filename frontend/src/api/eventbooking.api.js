@@ -1,5 +1,9 @@
 import axiosClient from './axiosClient';
 
+export function fetchEventBooking(search) {
+  return axiosClient.get('/event-booking', { params: { search: search || undefined } });
+}
+
 export function fetchAdminEventBooking() {
   return axiosClient.get('/admin/event-booking');
 }

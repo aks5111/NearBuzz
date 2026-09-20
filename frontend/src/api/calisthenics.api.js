@@ -1,5 +1,9 @@
 import axiosClient from './axiosClient';
 
+export function fetchCalisthenics(search) {
+  return axiosClient.get('/calisthenics', { params: { search: search || undefined } });
+}
+
 export function fetchAdminCalisthenics() {
   return axiosClient.get('/admin/calisthenics');
 }

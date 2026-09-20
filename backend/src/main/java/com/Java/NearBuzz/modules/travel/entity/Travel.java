@@ -18,4 +18,22 @@ public class Travel extends BaseListing {
 
     @Column(name = "group_size")
     private Integer groupSize;
+
+    @Column(columnDefinition = "TEXT")
+    private String inclusions;
+
+    @Column(name = "agency_name", length = 150)
+    private String agencyName;
+
+    @Column(name = "agency_contact_name", length = 150)
+    private String agencyContactName;
+
+    @Column(name = "agency_phone", length = 30)
+    private String agencyPhone;
+
+    @Column(name = "agency_email", length = 150)
+    private String agencyEmail;
+
+    @Column(name = "agency_photo_url", length = 500)
+    private String agencyPhotoUrl;
 }

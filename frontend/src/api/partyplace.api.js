@@ -1,5 +1,9 @@
 import axiosClient from './axiosClient';
 
+export function fetchPartyPlace(search) {
+  return axiosClient.get('/party-place', { params: { search: search || undefined } });
+}
+
 export function fetchAdminPartyPlace() {
   return axiosClient.get('/admin/party-place');
 }

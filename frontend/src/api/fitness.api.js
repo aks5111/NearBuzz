@@ -1,5 +1,9 @@
 import axiosClient from './axiosClient';
 
+export function fetchFitness(search) {
+  return axiosClient.get('/fitness', { params: { search: search || undefined } });
+}
+
 export function fetchAdminFitness() {
   return axiosClient.get('/admin/fitness');
 }

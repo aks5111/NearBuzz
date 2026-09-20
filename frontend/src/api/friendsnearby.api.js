@@ -1,5 +1,9 @@
 import axiosClient from './axiosClient';
 
+export function fetchFriendsNearby(search) {
+  return axiosClient.get('/friends-nearby', { params: { search: search || undefined } });
+}
+
 export function fetchAdminFriendsNearby() {
   return axiosClient.get('/admin/friends-nearby');
 }

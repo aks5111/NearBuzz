@@ -25,7 +25,9 @@ public class TravelServiceImpl implements TravelService {
     public List<TravelResponse> listPublished(String search) {
         String query = (search == null || search.isBlank()) ? null : search.trim().toLowerCase();
         return repository.findByStatusOrderByCreatedAtDesc(ListingStatus.PUBLISHED).stream()
-                .filter(e -> query == null || e.getTitle().toLowerCase().contains(query))
+                .filter(e -> query == null
+                        || e.getTitle().toLowerCase().contains(query)
+                        || e.getLocation().toLowerCase().contains(query))
                 .map(TravelResponse::from)
                 .toList();
     }
@@ -73,6 +75,12 @@ public class TravelServiceImpl implements TravelService {
         entity.setLongitude(request.longitude());
         entity.setDurationDays(request.durationDays());
         entity.setGroupSize(request.groupSize());
+        entity.setInclusions(request.inclusions());
+        entity.setAgencyName(request.agencyName());
+        entity.setAgencyContactName(request.agencyContactName());
+        entity.setAgencyPhone(request.agencyPhone());
+        entity.setAgencyEmail(request.agencyEmail());
+        entity.setAgencyPhotoUrl(request.agencyPhotoUrl());
         if (request.status() != null) {
             try {
                 entity.setStatus(ListingStatus.valueOf(request.status()));

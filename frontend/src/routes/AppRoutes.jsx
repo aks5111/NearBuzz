@@ -6,6 +6,13 @@ import LoginPage from '../modules/auth/pages/LoginPage';
 import HomePage from '../modules/home/pages/HomePage';
 import ShoppingPage from '../modules/shopping/pages/ShoppingPage';
 import MapPage from '../modules/map/pages/MapPage';
+import TravelPage from '../modules/travel/pages/TravelPage';
+import FitnessPage from '../modules/fitness/pages/FitnessPage';
+import CalisthenicsPage from '../modules/calisthenics/pages/CalisthenicsPage';
+import PartyPlacePage from '../modules/partyplace/pages/PartyPlacePage';
+import FriendsNearbyPage from '../modules/friendsnearby/pages/FriendsNearbyPage';
+import SportsActivityPage from '../modules/sportsactivity/pages/SportsActivityPage';
+import EventBookingPage from '../modules/eventbooking/pages/EventBookingPage';
 import DashboardPage from '../modules/dashboard/pages/DashboardPage';
 import AdminLoginPage from '../modules/admin/login/pages/AdminLoginPage';
 import AdminDashboardPage from '../modules/admin/dashboard/pages/AdminDashboardPage';
@@ -31,6 +38,13 @@ export default function AppRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/shopping" element={<ShoppingPage />} />
         <Route path="/map" element={<MapPage />} />
+        <Route path="/travel" element={<TravelPage />} />
+        <Route path="/fitness" element={<FitnessPage />} />
+        <Route path="/calisthenics" element={<CalisthenicsPage />} />
+        <Route path="/party-place" element={<PartyPlacePage />} />
+        <Route path="/friends-nearby" element={<FriendsNearbyPage />} />
+        <Route path="/sports-activity" element={<SportsActivityPage />} />
+        <Route path="/event-booking" element={<EventBookingPage />} />
       </Route>
 
       <Route element={<AuthLayout />}>

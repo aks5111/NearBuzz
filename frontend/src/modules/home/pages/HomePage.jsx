@@ -1,26 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Compass } from 'lucide-react';
 import SearchBar from '../../../components/ui/SearchBar';
-import CategoryFilter from '../components/CategoryFilter';
-import ActivityCard from '../components/ActivityCard';
-import ProductCard from '../../shopping/components/ProductCard';
-import { useActivities } from '../hooks/useActivities';
-import { fetchShoppingProducts } from '../../../api/shopping.api';
+import CategoryPreviewCard from '../components/CategoryPreviewCard';
+import { HOME_CATEGORIES } from '../config/categories';
 
 export default function HomePage() {
-  const { activities, query, setQuery, activeCategory, setActiveCategory } = useActivities();
-  const [shoppingProducts, setShoppingProducts] = useState([]);
-  const [shoppingLoading, setShoppingLoading] = useState(false);
-  const isShoppingTab = activeCategory === 'shopping';
+  const [query, setQuery] = useState('');
+  const [previews, setPreviews] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isShoppingTab) return;
-    setShoppingLoading(true);
-    fetchShoppingProducts({ search: query || undefined })
-      .then(({ data }) => setShoppingProducts(data?.data ?? []))
-      .catch(() => setShoppingProducts([]))
-      .finally(() => setShoppingLoading(false));
-  }, [isShoppingTab, query]);
+    Promise.allSettled(HOME_CATEGORIES.map((category) => category.fetchFn()))
+      .then((results) => {
+        const next = {};
+        results.forEach((result, index) => {
+          const key = HOME_CATEGORIES[index].key;
+          if (result.status === 'fulfilled') {
+            const items = result.value.data?.data ?? [];
+            next[key] = { count: items.length, previewImage: items[0]?.imageUrl ?? null };
+          } else {
+            next[key] = { count: 0, previewImage: null };
+          }
+        });
+        setPreviews(next);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const filteredCategories = useMemo(() => {
+    const normalized = query.trim().toLowerCase();
+    if (!normalized) return HOME_CATEGORIES;
+    return HOME_CATEGORIES.filter((c) => c.label.toLowerCase().includes(normalized));
+  }, [query]);
 
   return (
     <div className="home-page">
@@ -31,43 +42,28 @@ export default function HomePage() {
           </span>
           <h1>Find something worth doing today</h1>
           <p>
-            Treks, workouts, parties, sports, meetups, events and shopping — all in one place. Browse
-            everything, or search for exactly what you're in the mood for.
+            Treks, workouts, parties, sports, meetups, events and shopping — all in one place. Pick a
+            category to explore.
           </p>
-          <SearchBar
-            value={query}
-            onChange={setQuery}
-            placeholder="Search activities, places, events or products…"
-          />
+          <SearchBar value={query} onChange={setQuery} placeholder="Search categories… Travel, Fitness, Shopping" />
         </div>
       </section>
 
       <section className="home-body">
-        <CategoryFilter active={activeCategory} onChange={setActiveCategory} />
-
-        {isShoppingTab ? (
-          shoppingLoading ? (
-            <p className="page-subtitle">Loading products…</p>
-          ) : shoppingProducts.length > 0 ? (
-            <div className="activity-grid">
-              {shoppingProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          ) : (
-            <div className="empty-state">
-              <p>No products match "{query}" yet.</p>
-            </div>
-          )
-        ) : activities.length > 0 ? (
-          <div className="activity-grid">
-            {activities.map((activity) => (
-              <ActivityCard key={activity.id} activity={activity} />
-            ))}
-          </div>
-        ) : (
+        <div className="category-preview-grid">
+          {filteredCategories.map((category) => (
+            <CategoryPreviewCard
+              key={category.key}
+              category={category}
+              previewImage={previews[category.key]?.previewImage}
+              count={previews[category.key]?.count}
+              loading={loading}
+            />
+          ))}
+        </div>
+        {filteredCategories.length === 0 && (
           <div className="empty-state">
-            <p>Nothing matches "{query}" yet. Try a different search or category.</p>
+            <p>No category matches "{query}".</p>
           </div>
         )}
       </section>

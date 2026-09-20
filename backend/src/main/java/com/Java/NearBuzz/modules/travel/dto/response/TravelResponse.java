@@ -18,6 +18,12 @@ public record TravelResponse(
         Double longitude,
         Integer durationDays,
         Integer groupSize,
+        String inclusions,
+        String agencyName,
+        String agencyContactName,
+        String agencyPhone,
+        String agencyEmail,
+        String agencyPhotoUrl,
         String status) {
 
     public static TravelResponse from(Travel entity) {
@@ -35,6 +41,12 @@ public record TravelResponse(
                 entity.getLongitude(),
                 entity.getDurationDays(),
                 entity.getGroupSize(),
+                entity.getInclusions(),
+                entity.getAgencyName(),
+                entity.getAgencyContactName(),
+                entity.getAgencyPhone(),
+                entity.getAgencyEmail(),
+                entity.getAgencyPhotoUrl(),
                 entity.getStatus().name());
     }
 }

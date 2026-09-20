@@ -16,5 +16,11 @@ public record TravelRequest(
         Double longitude,
         Integer durationDays,
         Integer groupSize,
+        String inclusions,
+        String agencyName,
+        String agencyContactName,
+        String agencyPhone,
+        String agencyEmail,
+        String agencyPhotoUrl,
         String status) {
 }

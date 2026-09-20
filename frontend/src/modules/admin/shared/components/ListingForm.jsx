@@ -114,21 +114,39 @@ export default function ListingForm({ initial, extraFields = [], imageFolder, on
         <Input id="longitude" name="longitude" type="number" step="any" label="Longitude" value={form.longitude} onChange={handleChange} />
       </div>
 
-      {extraFields.length > 0 && (
+      {extraFields.filter((f) => f.type !== 'textarea').length > 0 && (
         <div className="product-form-row">
-          {extraFields.map((field) => (
-            <Input
-              key={field.name}
+          {extraFields
+            .filter((f) => f.type !== 'textarea')
+            .map((field) => (
+              <Input
+                key={field.name}
+                id={field.name}
+                name={field.name}
+                type={field.type === 'number' ? 'number' : 'text'}
+                label={field.label}
+                value={form[field.name]}
+                onChange={handleChange}
+              />
+            ))}
+        </div>
+      )}
+
+      {extraFields
+        .filter((f) => f.type === 'textarea')
+        .map((field) => (
+          <div className="form-field" key={field.name}>
+            <label htmlFor={field.name}>{field.label}</label>
+            <textarea
               id={field.name}
               name={field.name}
-              type={field.type === 'number' ? 'number' : 'text'}
-              label={field.label}
+              className="input"
+              rows={3}
               value={form[field.name]}
               onChange={handleChange}
             />
-          ))}
-        </div>
-      )}
+          </div>
+        ))}
 
       <div className="form-field">
         <label>Images</label>
