@@ -17,6 +17,11 @@ public record CalisthenicsResponse(
         Double latitude,
         Double longitude,
         String difficultyLevel,
+        String gymName,
+        String trainerContactName,
+        String trainerPhone,
+        String trainerEmail,
+        String trainerPhotoUrl,
         String status) {
 
     public static CalisthenicsResponse from(Calisthenics entity) {
@@ -33,6 +38,11 @@ public record CalisthenicsResponse(
                 entity.getLatitude(),
                 entity.getLongitude(),
                 entity.getDifficultyLevel(),
+                entity.getGymName(),
+                entity.getTrainerContactName(),
+                entity.getTrainerPhone(),
+                entity.getTrainerEmail(),
+                entity.getTrainerPhotoUrl(),
                 entity.getStatus().name());
     }
 }

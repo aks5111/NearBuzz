@@ -15,4 +15,19 @@ public class Calisthenics extends BaseListing {
 
     @Column(name = "difficulty_level")
     private String difficultyLevel;
+
+    @Column(name = "gym_name", length = 150)
+    private String gymName;
+
+    @Column(name = "trainer_contact_name", length = 150)
+    private String trainerContactName;
+
+    @Column(name = "trainer_phone", length = 30)
+    private String trainerPhone;
+
+    @Column(name = "trainer_email", length = 150)
+    private String trainerEmail;
+
+    @Column(name = "trainer_photo_url", length = 500)
+    private String trainerPhotoUrl;
 }

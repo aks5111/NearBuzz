@@ -15,5 +15,10 @@ public record CalisthenicsRequest(
         Double latitude,
         Double longitude,
         String difficultyLevel,
+        String gymName,
+        String trainerContactName,
+        String trainerPhone,
+        String trainerEmail,
+        String trainerPhotoUrl,
         String status) {
 }
