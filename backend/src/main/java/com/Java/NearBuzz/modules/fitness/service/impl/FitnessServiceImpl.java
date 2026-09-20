@@ -25,7 +25,9 @@ public class FitnessServiceImpl implements FitnessService {
     public List<FitnessResponse> listPublished(String search) {
         String query = (search == null || search.isBlank()) ? null : search.trim().toLowerCase();
         return repository.findByStatusOrderByCreatedAtDesc(ListingStatus.PUBLISHED).stream()
-                .filter(e -> query == null || e.getTitle().toLowerCase().contains(query))
+                .filter(e -> query == null
+                        || e.getTitle().toLowerCase().contains(query)
+                        || e.getLocation().toLowerCase().contains(query))
                 .map(FitnessResponse::from)
                 .toList();
     }
@@ -73,6 +75,10 @@ public class FitnessServiceImpl implements FitnessService {
         entity.setLongitude(request.longitude());
         entity.setTrainerName(request.trainerName());
         entity.setDifficultyLevel(request.difficultyLevel());
+        entity.setGymName(request.gymName());
+        entity.setTrainerPhone(request.trainerPhone());
+        entity.setTrainerEmail(request.trainerEmail());
+        entity.setTrainerPhotoUrl(request.trainerPhotoUrl());
         if (request.status() != null) {
             try {
                 entity.setStatus(ListingStatus.valueOf(request.status()));

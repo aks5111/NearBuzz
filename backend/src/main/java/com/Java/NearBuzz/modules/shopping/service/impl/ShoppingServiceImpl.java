@@ -39,7 +39,9 @@ public class ShoppingServiceImpl implements ShoppingService {
 
         return productRepository.findByStatusOrderByCreatedAtDesc(ProductStatus.PUBLISHED).stream()
                 .filter(p -> slug == null || slug.equals(p.getCategory().getSlug()))
-                .filter(p -> query == null || p.getTitle().toLowerCase().contains(query))
+                .filter(p -> query == null
+                        || p.getTitle().toLowerCase().contains(query)
+                        || (p.getLocation() != null && p.getLocation().toLowerCase().contains(query)))
                 .map(ProductResponse::from)
                 .toList();
     }
@@ -85,6 +87,12 @@ public class ShoppingServiceImpl implements ShoppingService {
         product.setPriceLabel(request.priceLabel());
         product.setImages(request.imageUrls());
         product.setStockQuantity(request.stockQuantity());
+        product.setLocation(request.location());
+        product.setStoreName(request.storeName());
+        product.setStoreContactName(request.storeContactName());
+        product.setStorePhone(request.storePhone());
+        product.setStoreEmail(request.storeEmail());
+        product.setStorePhotoUrl(request.storePhotoUrl());
         if (request.status() != null) {
             try {
                 product.setStatus(ProductStatus.valueOf(request.status()));

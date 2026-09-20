@@ -13,6 +13,12 @@ export default function ProductForm({ initial, categories, onSubmit, onCancel, s
     priceLabel: initial?.priceLabel ?? '',
     imageUrls: initial?.imageUrls ?? [],
     stockQuantity: initial?.stockQuantity ?? 0,
+    location: initial?.location ?? '',
+    storeName: initial?.storeName ?? '',
+    storeContactName: initial?.storeContactName ?? '',
+    storePhone: initial?.storePhone ?? '',
+    storeEmail: initial?.storeEmail ?? '',
+    storePhotoUrl: initial?.storePhotoUrl ?? '',
     status: initial?.status ?? 'PUBLISHED',
   });
   const [error, setError] = useState(null);
@@ -37,6 +43,12 @@ export default function ProductForm({ initial, categories, onSubmit, onCancel, s
         priceLabel: form.priceLabel,
         imageUrls: form.imageUrls,
         stockQuantity: Number(form.stockQuantity),
+        location: form.location,
+        storeName: form.storeName,
+        storeContactName: form.storeContactName,
+        storePhone: form.storePhone,
+        storeEmail: form.storeEmail,
+        storePhotoUrl: form.storePhotoUrl,
         status: form.status,
       });
     } catch (err) {
@@ -83,6 +95,20 @@ export default function ProductForm({ initial, categories, onSubmit, onCancel, s
           onChange={handleChange}
         />
       </div>
+
+      <Input id="location" name="location" label="Store area / location" placeholder="Koramangala, Bangalore" value={form.location} onChange={handleChange} />
+
+      <div className="product-form-row">
+        <Input id="storeName" name="storeName" label="Store name" value={form.storeName} onChange={handleChange} />
+        <Input id="storeContactName" name="storeContactName" label="Store contact person" value={form.storeContactName} onChange={handleChange} />
+      </div>
+
+      <div className="product-form-row">
+        <Input id="storePhone" name="storePhone" label="Store phone" value={form.storePhone} onChange={handleChange} />
+        <Input id="storeEmail" name="storeEmail" label="Store email" value={form.storeEmail} onChange={handleChange} />
+      </div>
+
+      <Input id="storePhotoUrl" name="storePhotoUrl" label="Store contact photo URL" value={form.storePhotoUrl} onChange={handleChange} />
 
       <div className="form-field">
         <label htmlFor="status">Status</label>

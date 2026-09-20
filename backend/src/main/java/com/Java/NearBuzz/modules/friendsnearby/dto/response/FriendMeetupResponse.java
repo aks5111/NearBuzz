@@ -18,6 +18,11 @@ public record FriendMeetupResponse(
         Double longitude,
         Integer minAge,
         Integer maxParticipants,
+        String venueName,
+        String hostName,
+        String hostPhone,
+        String hostEmail,
+        String hostPhotoUrl,
         String status) {
 
     public static FriendMeetupResponse from(FriendMeetup entity) {
@@ -35,6 +40,11 @@ public record FriendMeetupResponse(
                 entity.getLongitude(),
                 entity.getMinAge(),
                 entity.getMaxParticipants(),
+                entity.getVenueName(),
+                entity.getHostName(),
+                entity.getHostPhone(),
+                entity.getHostEmail(),
+                entity.getHostPhotoUrl(),
                 entity.getStatus().name());
     }
 }

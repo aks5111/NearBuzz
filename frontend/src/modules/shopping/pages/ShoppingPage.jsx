@@ -17,7 +17,7 @@ export default function ShoppingPage() {
           </span>
           <h1>Grocery, fashion, electronics and more</h1>
           <p>Browse every category, or search for exactly what you need.</p>
-          <SearchBar value={query} onChange={setQuery} placeholder="Search products…" />
+          <SearchBar value={query} onChange={setQuery} placeholder="Search products or area — Bangalore, Mumbai…" />
         </div>
       </section>
 

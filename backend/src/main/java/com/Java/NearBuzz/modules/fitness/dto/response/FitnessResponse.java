@@ -18,6 +18,10 @@ public record FitnessResponse(
         Double longitude,
         String trainerName,
         String difficultyLevel,
+        String gymName,
+        String trainerPhone,
+        String trainerEmail,
+        String trainerPhotoUrl,
         String status) {
 
     public static FitnessResponse from(Fitness entity) {
@@ -35,6 +39,10 @@ public record FitnessResponse(
                 entity.getLongitude(),
                 entity.getTrainerName(),
                 entity.getDifficultyLevel(),
+                entity.getGymName(),
+                entity.getTrainerPhone(),
+                entity.getTrainerEmail(),
+                entity.getTrainerPhotoUrl(),
                 entity.getStatus().name());
     }
 }

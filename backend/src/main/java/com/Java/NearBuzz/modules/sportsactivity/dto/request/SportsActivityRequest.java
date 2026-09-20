@@ -16,5 +16,10 @@ public record SportsActivityRequest(
         Double longitude,
         String sportType,
         Integer teamSize,
+        String venueName,
+        String organizerName,
+        String organizerPhone,
+        String organizerEmail,
+        String organizerPhotoUrl,
         String status) {
 }

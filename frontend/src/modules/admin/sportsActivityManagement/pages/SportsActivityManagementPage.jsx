@@ -15,8 +15,16 @@ export default function SportsActivityManagementPage() {
       extraFields={[
         { name: 'sportType', label: 'Sport type', type: 'text' },
         { name: 'teamSize', label: 'Team size', type: 'number' },
+        { name: 'venueName', label: 'Venue name', type: 'text' },
+        { name: 'organizerName', label: 'Organizer name', type: 'text' },
+        { name: 'organizerPhone', label: 'Organizer phone', type: 'text' },
+        { name: 'organizerEmail', label: 'Organizer email', type: 'text' },
+        { name: 'organizerPhotoUrl', label: 'Organizer photo URL', type: 'text' },
       ]}
-      extraColumns={[{ key: 'sportType', header: 'Sport' }, { key: 'teamSize', header: 'Team size' }]}
+      extraColumns={[
+        { key: 'sportType', header: 'Sport' },
+        { key: 'venueName', header: 'Venue' },
+      ]}
       api={{
         list: fetchAdminSportsActivity,
         create: createAdminSportsActivity,

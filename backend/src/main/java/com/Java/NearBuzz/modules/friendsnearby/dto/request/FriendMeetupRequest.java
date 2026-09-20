@@ -16,5 +16,10 @@ public record FriendMeetupRequest(
         Double longitude,
         Integer minAge,
         Integer maxParticipants,
+        String venueName,
+        String hostName,
+        String hostPhone,
+        String hostEmail,
+        String hostPhotoUrl,
         String status) {
 }

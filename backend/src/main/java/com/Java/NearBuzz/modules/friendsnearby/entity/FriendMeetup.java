@@ -18,4 +18,19 @@ public class FriendMeetup extends BaseListing {
 
     @Column(name = "max_participants")
     private Integer maxParticipants;
+
+    @Column(name = "venue_name", length = 150)
+    private String venueName;
+
+    @Column(name = "host_name", length = 150)
+    private String hostName;
+
+    @Column(name = "host_phone", length = 30)
+    private String hostPhone;
+
+    @Column(name = "host_email", length = 150)
+    private String hostEmail;
+
+    @Column(name = "host_photo_url", length = 500)
+    private String hostPhotoUrl;
 }

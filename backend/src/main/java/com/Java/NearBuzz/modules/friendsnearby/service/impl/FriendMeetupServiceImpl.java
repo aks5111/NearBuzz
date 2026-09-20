@@ -25,7 +25,9 @@ public class FriendMeetupServiceImpl implements FriendMeetupService {
     public List<FriendMeetupResponse> listPublished(String search) {
         String query = (search == null || search.isBlank()) ? null : search.trim().toLowerCase();
         return repository.findByStatusOrderByCreatedAtDesc(ListingStatus.PUBLISHED).stream()
-                .filter(e -> query == null || e.getTitle().toLowerCase().contains(query))
+                .filter(e -> query == null
+                        || e.getTitle().toLowerCase().contains(query)
+                        || e.getLocation().toLowerCase().contains(query))
                 .map(FriendMeetupResponse::from)
                 .toList();
     }
@@ -73,6 +75,11 @@ public class FriendMeetupServiceImpl implements FriendMeetupService {
         entity.setLongitude(request.longitude());
         entity.setMinAge(request.minAge());
         entity.setMaxParticipants(request.maxParticipants());
+        entity.setVenueName(request.venueName());
+        entity.setHostName(request.hostName());
+        entity.setHostPhone(request.hostPhone());
+        entity.setHostEmail(request.hostEmail());
+        entity.setHostPhotoUrl(request.hostPhotoUrl());
         if (request.status() != null) {
             try {
                 entity.setStatus(ListingStatus.valueOf(request.status()));

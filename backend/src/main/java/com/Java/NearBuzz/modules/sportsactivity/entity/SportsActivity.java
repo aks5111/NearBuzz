@@ -18,4 +18,19 @@ public class SportsActivity extends BaseListing {
 
     @Column(name = "team_size")
     private Integer teamSize;
+
+    @Column(name = "venue_name", length = 150)
+    private String venueName;
+
+    @Column(name = "organizer_name", length = 150)
+    private String organizerName;
+
+    @Column(name = "organizer_phone", length = 30)
+    private String organizerPhone;
+
+    @Column(name = "organizer_email", length = 150)
+    private String organizerEmail;
+
+    @Column(name = "organizer_photo_url", length = 500)
+    private String organizerPhotoUrl;
 }

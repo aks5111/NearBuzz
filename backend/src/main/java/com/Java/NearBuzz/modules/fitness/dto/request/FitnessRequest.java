@@ -16,5 +16,9 @@ public record FitnessRequest(
         Double longitude,
         String trainerName,
         String difficultyLevel,
+        String gymName,
+        String trainerPhone,
+        String trainerEmail,
+        String trainerPhotoUrl,
         String status) {
 }

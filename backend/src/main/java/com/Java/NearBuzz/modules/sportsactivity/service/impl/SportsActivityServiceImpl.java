@@ -25,7 +25,9 @@ public class SportsActivityServiceImpl implements SportsActivityService {
     public List<SportsActivityResponse> listPublished(String search) {
         String query = (search == null || search.isBlank()) ? null : search.trim().toLowerCase();
         return repository.findByStatusOrderByCreatedAtDesc(ListingStatus.PUBLISHED).stream()
-                .filter(e -> query == null || e.getTitle().toLowerCase().contains(query))
+                .filter(e -> query == null
+                        || e.getTitle().toLowerCase().contains(query)
+                        || e.getLocation().toLowerCase().contains(query))
                 .map(SportsActivityResponse::from)
                 .toList();
     }
@@ -73,6 +75,11 @@ public class SportsActivityServiceImpl implements SportsActivityService {
         entity.setLongitude(request.longitude());
         entity.setSportType(request.sportType());
         entity.setTeamSize(request.teamSize());
+        entity.setVenueName(request.venueName());
+        entity.setOrganizerName(request.organizerName());
+        entity.setOrganizerPhone(request.organizerPhone());
+        entity.setOrganizerEmail(request.organizerEmail());
+        entity.setOrganizerPhotoUrl(request.organizerPhotoUrl());
         if (request.status() != null) {
             try {
                 entity.setStatus(ListingStatus.valueOf(request.status()));

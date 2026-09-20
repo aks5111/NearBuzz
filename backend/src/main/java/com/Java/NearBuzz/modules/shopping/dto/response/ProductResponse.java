@@ -12,6 +12,12 @@ public record ProductResponse(
         String imageUrl,
         List<String> imageUrls,
         Integer stockQuantity,
+        String location,
+        String storeName,
+        String storeContactName,
+        String storePhone,
+        String storeEmail,
+        String storePhotoUrl,
         String status,
         CategoryResponse category) {
 
@@ -24,6 +30,12 @@ public record ProductResponse(
                 product.getImageUrl(),
                 product.getImageUrls(),
                 product.getStockQuantity(),
+                product.getLocation(),
+                product.getStoreName(),
+                product.getStoreContactName(),
+                product.getStorePhone(),
+                product.getStoreEmail(),
+                product.getStorePhotoUrl(),
                 product.getStatus().name(),
                 CategoryResponse.from(product.getCategory()));
     }

@@ -61,6 +61,24 @@ public class ShoppingProduct {
     @Column(name = "stock_quantity", nullable = false)
     private Integer stockQuantity = 0;
 
+    @Column(length = 255)
+    private String location;
+
+    @Column(name = "store_name", length = 150)
+    private String storeName;
+
+    @Column(name = "store_contact_name", length = 150)
+    private String storeContactName;
+
+    @Column(name = "store_phone", length = 30)
+    private String storePhone;
+
+    @Column(name = "store_email", length = 150)
+    private String storeEmail;
+
+    @Column(name = "store_photo_url", length = 500)
+    private String storePhotoUrl;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private ProductStatus status = ProductStatus.PUBLISHED;

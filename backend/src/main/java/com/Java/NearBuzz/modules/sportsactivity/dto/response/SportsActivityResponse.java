@@ -18,6 +18,11 @@ public record SportsActivityResponse(
         Double longitude,
         String sportType,
         Integer teamSize,
+        String venueName,
+        String organizerName,
+        String organizerPhone,
+        String organizerEmail,
+        String organizerPhotoUrl,
         String status) {
 
     public static SportsActivityResponse from(SportsActivity entity) {
@@ -35,6 +40,11 @@ public record SportsActivityResponse(
                 entity.getLongitude(),
                 entity.getSportType(),
                 entity.getTeamSize(),
+                entity.getVenueName(),
+                entity.getOrganizerName(),
+                entity.getOrganizerPhone(),
+                entity.getOrganizerEmail(),
+                entity.getOrganizerPhotoUrl(),
                 entity.getStatus().name());
     }
 }
