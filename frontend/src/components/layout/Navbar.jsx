@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import { useAuth } from '../../modules/auth/hooks/useAuth';
 import { ADMIN_ROLES } from '../../constants';
-import Button from '../ui/Button';
 
 export default function Navbar() {
-  const { isAuthenticated, role, logout } = useAuth();
+  const { isAuthenticated, role } = useAuth();
   const isAdmin = ADMIN_ROLES.includes(role);
 
   return (
@@ -15,17 +14,12 @@ export default function Navbar() {
         NearBuzz
       </Link>
       <nav className="navbar-actions">
-        <Link to="/shopping">Shop</Link>
+        <Link to="/">Home</Link>
         <Link to="/map">Map</Link>
         {isAuthenticated ? (
-          <>
-            <Link to={isAdmin ? '/admin/dashboard' : '/dashboard'}>
-              {isAdmin ? 'Admin Panel' : 'Dashboard'}
-            </Link>
-            <Button variant="secondary" onClick={logout}>
-              Log out
-            </Button>
-          </>
+          <Link to={isAdmin ? '/admin/dashboard' : '/dashboard'}>
+            {isAdmin ? 'Admin Panel' : 'Dashboard'}
+          </Link>
         ) : (
           <Link to="/login" className="btn btn-primary">
             Log in
